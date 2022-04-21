@@ -27,6 +27,12 @@ def run_tkinter_animation(
 def _draw_world(
     canvas: Canvas, lattice: Lattice, cellular_automaton: CellularAutomaton
 ) -> None:
+    color_dict = {
+        1: "black",
+        2: "blue",
+        3: "red",
+    }
     for c in cellular_automaton.alive_cells:
         cb = lattice.get_cell_bounding_box(c.x, c.y)
-        canvas.create_rectangle(*cb, fill="black", outline="grey")
+        color = color_dict.get(c.state, "white")
+        canvas.create_rectangle(*cb, fill=color, outline="grey")
