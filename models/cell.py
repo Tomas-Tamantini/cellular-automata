@@ -5,7 +5,7 @@ from dataclasses import dataclass
 class Cell:
     x: int
     y: int
-    state: int
+    state: int = 1
 
     def __hash__(self) -> int:
         return hash((self.x, self.y))
