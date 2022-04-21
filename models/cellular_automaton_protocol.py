@@ -5,10 +5,6 @@ from .cell import Cell
 
 class CellularAutomaton(Protocol):
     @property
-    def number_of_cell_states(self) -> int:
-        ...
-
-    @property
     def alive_cells(self) -> set[Cell]:
         ...
 

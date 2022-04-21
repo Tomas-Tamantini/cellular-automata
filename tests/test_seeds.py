@@ -2,10 +2,6 @@ from models.cell import Cell
 from models.rules import Seeds
 
 
-def test_seeds_has_only_two_states():
-    assert Seeds(initial_cell_positions=set()).number_of_cell_states == 2
-
-
 def test_world_has_initial_living_cells():
     seeds = Seeds(initial_cell_positions={(0, 0), (10, 20)})
     assert len(seeds.alive_cells) == 2

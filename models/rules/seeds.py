@@ -8,10 +8,6 @@ class Seeds:
         self.__cells_pos = initial_cell_positions
 
     @property
-    def number_of_cell_states(self) -> int:
-        return 2
-
-    @property
     def alive_cells(self) -> set[Cell]:
         return {Cell(*p) for p in self.__cells_pos}
 
