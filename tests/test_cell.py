@@ -1,4 +1,4 @@
-from models.cell import Cell
+from models import Cell
 
 
 def test_cells_are_hashable_by_position():
