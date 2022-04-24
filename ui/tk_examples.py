@@ -1,4 +1,4 @@
-from models.rules import Seeds, WireWorld
+from models.rules import Seeds, WireWorld, GameOfLife
 
 from .lattice import Lattice
 from .tk_animation import run_tkinter_animation
@@ -26,17 +26,24 @@ def run_seeds_example():
     )
 
 
+def run_game_of_life_example():
+    cells_left = {(0, 0), (0, 1), (0, 2), (1, 1), (2, 1), (3, 0), (3, 2)}
+    cells_right = {(7 - x, y) for (x, y) in cells_left}
+    bullet_left = {(-79, 80), (-78, 79), (-77, 79), (-77, 80), (-77, 81)}
+    bullet_right = {(-x, y) for (x, y) in bullet_left}
+    gof_world = GameOfLife(
+        set.union(cells_left, cells_right, bullet_left, bullet_right)
+    )
+    gof_lattice = Lattice(-50, -50, 50, 50, cell_size_in_pixels=5)
+
+    run_tkinter_animation(gof_world, gof_lattice, frames_per_second=15, num_frames=1000)
+
+
 def run_wireworld_example():
     # Figure 8
     conductors = set()
-    for i in range(10):
-        conductors.add((i + 10, 10))
-        conductors.add((i + 10, 20))
-        conductors.add((i + 19, 10))
-        conductors.add((i + 19, 20))
-        conductors.add((10, 11 + i))
-        conductors.add((19, 11 + i))
-        conductors.add((28, 11 + i))
+    conductors.update({(i, j) for i in range(10, 29) for j in (10, 20)})
+    conductors.update({(i, j) for i in (10, 19, 28) for j in range(11, 21)})
 
     # Diodes
     conductors.update({(9, 15), (9, 14), (11, 15), (11, 14)})
